@@ -8,6 +8,14 @@ output: 'hello'
 
 */
 
-var suffleString = function(input, shuffleIndices) {
-
+var suffleString = function (input, shuffleIndices) {
+    var arrange = [];
+    var str = '';
+    for (let i = 0; i < input.length; i++) {
+        arrange[shuffleIndices[i]] = input[i];
+    }
+    for (let i = 0; i < arrange.length; i++) {
+        str += arrange[i];
+    }
+    return str;
 };

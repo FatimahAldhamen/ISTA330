@@ -7,6 +7,16 @@ input: [23, 44, 12, 4]
 output: [1, 0, 1, 2]
 */
 
-var biggerAndEven = function(input) {
-
+var biggerAndEven = function (input) {
+    var result = [];
+    for (var i = 0; i < input.length; i++) {
+        count = 0;
+        for (let j = 0; j < input.length; j++) {
+            if (i != j && input[i] <= input[j] && input[j] % 2 == 0) {
+                count++;
+            }
+        }
+        result[i] = (count);
+    }
+    return result;
 };
