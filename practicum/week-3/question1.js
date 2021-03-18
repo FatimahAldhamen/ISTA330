@@ -9,6 +9,22 @@ is at least twice as much as every other number
          output: true
 */
 
-var largestNumberIsAtLeastTwice = function(input) {
-   
+var largestNumberIsAtLeastTwice = function (input) {
+        var largest = 0;
+        var check = false;
+        var largestIndex;
+        for (var i = 0; i < input.length; i++) {
+                if (input[i] > largest) {
+                        largest = input[i];
+                        largestIndex = i;
+                }
+        }
+        for (let i = 0; i < input.length; i++) {
+                if (input[i] * 2 < largest) {
+                        check = true;
+                } else if (i != largestIndex) {
+                        check = false;
+                }
+        }
+        return check;
 };

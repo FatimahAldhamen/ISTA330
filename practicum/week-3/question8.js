@@ -12,6 +12,12 @@ input: [3,5,3,3,5,1]
 output: 3
 */
 
-var d_integer = function(input) {
+var d_integer = function (input) {
+    dInt = -1;
+    for (let i = 0; i < input.length; i++) {
+        if (i == input[i] && dInt < i)
+            dInt = i;
 
+    }
+    return dInt;
 };
