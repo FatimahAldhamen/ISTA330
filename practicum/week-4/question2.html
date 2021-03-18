@@ -10,17 +10,9 @@
 
 <body>
     <div id="question">
-        1. Display the flowers as per question 1.<br />
-        2. Add the following functionality to the page:<br />
-        When users click on an image, the images should be
-        reorganized using the following rule:<br />
-        The flower that has been clicked goes to the first position in
-        the first row. The next position in the first row will
-        be the flower whose name is alphabeticlly right after the
-        name of the first one and so on for the other flowers.
-        <br />
-        So, for example if a user clicks on the flower lily,
-        then the flowers should be rearranged as:
+        1. Display the flowers as per question 1.<br /> 2. Add the following functionality to the page:<br /> When users click on an image, the images should be reorganized using the following rule:<br /> The flower that has been clicked goes to the first
+        position in the first row. The next position in the first row will be the flower whose name is alphabeticlly right after the name of the first one and so on for the other flowers.
+        <br /> So, for example if a user clicks on the flower lily, then the flowers should be rearranged as:
         <br />
         <table>
             <tr>
@@ -59,22 +51,22 @@
     </div>
     <script>
         /*
-           1. Display the flowers as per question 1.
-           2. Add the following functionality to the page:
-              When users click on an image, the images should be 
-              reorganized using the following rule:
-              The flowers that has been clicked goes to the first position in
-              the first row. The next position in the first row will
-              be the flower whose name is alphabeticlly right after the
-              name of the first one and so on for the other flowers.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           1. Display the flowers as per question 1.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           2. Add the following functionality to the page:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              When users click on an image, the images should be 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              reorganized using the following rule:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              The flowers that has been clicked goes to the first position in
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              the first row. The next position in the first row will
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              be the flower whose name is alphabeticlly right after the
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              name of the first one and so on for the other flowers.
 
-              So, for example if a user clicks on the flower lily,
-              then the flowers should be rearranged as:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              So, for example if a user clicks on the flower lily,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              then the flowers should be rearranged as:
 
-         lily       rose           sunflower   tulip
-        waterlily   cherryblossom  daffodil    daisy 
-        
-        */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         lily       rose           sunflower   tulip
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        waterlily   cherryblossom  daffodil    daisy 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
         class Flower {
             constructor(name, pictureName) {
                 this.name = name;
@@ -83,8 +75,8 @@
         }
         let daffodil = new Flower('Daffodil', 'daffodil.png');
         let cherryblossom = new Flower('Cherry blossom', 'cherryblossom.png');
-        let lily = new Flower('Lily', 'lily.png');
-        let daisy = new Flower('Daisy', 'daisy.png');
+        let lily = new Flower('Lily', 'lily.jpg');
+        let daisy = new Flower('Daisy', 'daisy.jpg');
         let sunflower = new Flower('Sunflower', 'sunflower.png');
         let tulip = new Flower('Tulip', 'tulip.png');
         let rose = new Flower('Rose', 'rose.png');
@@ -100,6 +92,60 @@
             rose,
             waterlily
         ];
+
+        function compareName(a, b) {
+            if (a.name < b.name) {
+                return -1;
+            } else if (a.name > b.name) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        function nextFlowerIndex(a) {
+            var arr = [];
+            var index;
+            for (let i = 0; i < flowers.length; i++) {
+                arr.push(flowers[i]);
+            }
+
+            arr.sort(compareName);
+
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].name === a.name)
+                    index = (i + 1);
+            }
+            for (let i = 0; i < flowers.length; i++) {
+                if (flowers[i].name === arr[index].name)
+                    return i;
+            }
+        }
+
+        function displayFlowers() {
+            flowersDiv = document.getElementById('flowersDiv');
+            flowersDiv.innerHTML = '';
+            for (let i = 0; i < flowers.length; i++) {
+                flowersDiv.innerHTML += `<div id="` + i + `" onclick="arrangeFlowers(id)">
+                    <div><img src="images/` + flowers[i].picture + `" alt=""></div>
+                    <div>` + flowers[i].name + `</div>
+                    </div>`;
+            }
+        }
+
+        function swap(a, b) {
+            var temp = flowers[a];
+            flowers[a] = flowers[b];
+            flowers[b] = temp;
+        }
+
+        function arrangeFlowers(id) {
+            swap(id, 0);
+            if (id != flowers.length - 1)
+                swap(nextFlowerIndex(flowers[0]), 1);
+            displayFlowers();
+        }
+        displayFlowers();
     </script>
 </body>
 
