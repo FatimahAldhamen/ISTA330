@@ -14,10 +14,19 @@ output: 1
 */
 
 var d_count = function (input1, input2, d) {
-    var count = 0;
+    var sum = 0;
     for (let i = 0; i < input1.length; i++) {
-        if ((input1[i] - input2[i]) <= d)
-            count++;
+        var check=0;
+        for (let j = 0; j < input2.length; j++) {
+            if ((input1[i] - input2[j]) < d)
+            {
+                check++;
+            }    
+        }
+        if (check <=0)
+        {
+            sum++;
+        }
     }
-    return count;
+    return sum;
 };
